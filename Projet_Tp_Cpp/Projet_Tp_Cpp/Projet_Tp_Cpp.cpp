@@ -9,13 +9,13 @@
 using namespace std;
 using namespace cv;
  
-void AfficherIm(const string nomFenetre,const Mat img)
+void ShowImage(const string nomFenetre,const Mat img)
 {
 	namedWindow(nomFenetre, WINDOW_NORMAL);
 	imshow(nomFenetre, img);
 }
 
-int LoadImagen()
+int LoadImage()
 {
 	/*
 	Création de l’objet image et lecture de l’image à partir du
@@ -34,9 +34,12 @@ int LoadImagen()
 	namedWindow(windowName);
 	imshow(windowName, image);
 	waitKey(0);
-	destroyWindow(windowName);	return 0;}
+	destroyWindow(windowName);
 
-int ChangemtLux()
+	return 0;
+}
+
+int ChangeBright()
 {
 	// Lecture de l’image avec la méthode imread ()
 	Mat image = imread("Q:/etudiants/Buffle.jpg");
@@ -54,7 +57,6 @@ int ChangemtLux()
 	image.convertTo(imageBrighnessHigh100, -1, 1, 100);
 	Mat imageBrighnessLow100;
 	image.convertTo(imageBrighnessLow100, -1, 1, -100);
-	namedWindow(windowNameBrightnessLow100, WINDOW_NORMAL);
 	String windowNameOriginalImage = "Original Image";
 
 	/*
@@ -63,6 +65,7 @@ int ChangemtLux()
 	*/
 	namedWindow(windowNameOriginalImage, WINDOW_NORMAL);
 	namedWindow(windowNameBrightnessHigh100, WINDOW_NORMAL);
+	namedWindow(windowNameBrightnessLow100, WINDOW_NORMAL);
 
 	imshow(windowNameOriginalImage, image);
 	imshow(windowNameBrightnessHigh100, imageBrighnessHigh100);
@@ -87,8 +90,8 @@ int main(int argc, char** argv)
 	Mat image = imread("Q:/etudiants/Buffle.jpg");
 	Mat imagefin;
 	imagefin = Seuillage(image);
-	AfficherIm("Normal", image);
-	AfficherIm("Seuillage", imagefin);
+	ShowImage("Normal", image);
+	ShowImage("Seuillage", imagefin);
 	waitKey(0);
 }
 
